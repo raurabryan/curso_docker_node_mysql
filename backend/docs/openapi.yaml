@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: API de Tareas
+  description: API para gestionar tareas con autenticación y autorización.
+  version: 1.0.0
+servers:  
+  - url: http://localhost:3001
+  description: Servidor local
+
+paths:
+/api/login:
+  post:
+    summary: Iniciar sesión de usuario
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: raurabryan@gamil
+              password:
+                type: string
+                example: siempreSegura123
+              rol:
+                type: string
+                example: admin
+            required:
+              - email
+              - password
+              - rol
+    responses:
+      '200':
+        description: Inicio de sesión exitoso
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      '401':
+        description: Credenciales inválidas
